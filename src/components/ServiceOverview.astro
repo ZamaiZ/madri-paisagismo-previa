@@ -1,0 +1,91 @@
+---
+import FadeInText from "@astroanimate/core/FadeInText";
+import { Icon } from "astro-icon/components";
+import { media } from "../config/media";
+import { siteConfig } from "../config/site";
+
+const serviceAreas = [
+  {
+    number: "01",
+    title: "Paisagismo e mudas",
+    icon: "leaf",
+    image: media.garden,
+    items: ["Paisagismo", "Venda de mudas"],
+  },
+  {
+    number: "02",
+    title: "Meio ambiente e água",
+    icon: "droplets",
+    image: media.aerial,
+    items: [
+      "Plano de Gerenciamento de Resíduos Sólidos",
+      "Estudo de Impacto Ambiental",
+      "Plano de Compensação Ambiental",
+      "Tratamento de água",
+    ],
+  },
+  {
+    number: "03",
+    title: "Segurança e documentação",
+    icon: "shield-check",
+    image: media.safety,
+    items: ["Segurança do Trabalho", "Treinamentos", "Laudos"],
+  },
+] as const;
+---
+
+<section class="intro" aria-labelledby="intro-title">
+  <FadeInText as="p" class="eyebrow" duration={0.35} blur="3px" yOffset={8}>Madri Paisagismo e Serviços</FadeInText>
+  <h2 class="section-title" id="intro-title" data-reveal>Tudo começa por um olhar atento.</h2>
+  <p class="section-copy" data-reveal>Paisagismo, soluções ambientais e segurança do trabalho fazem parte da atuação da Madri. Explore os serviços e entre em contato.</p>
+  <div class="intro-rule" aria-hidden="true"></div>
+</section>
+
+<section class="services" id="servicos" aria-labelledby="services-title">
+  <div class="site-container">
+    <div class="services-heading" data-reveal>
+      <div>
+        <p class="eyebrow">O que fazemos <span class="eyebrow-rule" aria-hidden="true"></span> 03 frentes</p>
+        <h2 class="section-title" id="services-title">O cuidado em<br />três frentes.</h2>
+      </div>
+      <p class="section-copy">Nove serviços distribuídos entre paisagismo, meio ambiente e segurança do trabalho.</p>
+    </div>
+
+    <div class="service-cards">
+      {serviceAreas.map((area, index) => (
+        <article class="service-card" data-reveal style={`--reveal-delay: ${index * 100}ms`}>
+          <div class="service-card-image">
+            <img src={area.image.src} width={area.image.width} height={area.image.height} alt={area.image.alt} loading="lazy" />
+            <span class="service-card-index" aria-hidden="true">{area.number} / 03</span>
+          </div>
+          <div class="service-card-content">
+            <div class="service-card-icon" aria-hidden="true"><Icon name={area.icon} /></div>
+            <h3>{area.title}</h3>
+            <div class="service-card-divider" aria-hidden="true"></div>
+            <ul>
+              {area.items.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="service-card-count">{String(area.items.length).padStart(2, "0")} serviços nesta frente</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <aside class="services-contact" data-reveal aria-labelledby="services-contact-title">
+      <div class="services-contact-copy">
+        <p class="eyebrow">Contato direto <span aria-hidden="true">·</span> Madri Paisagismo e Serviços</p>
+        <h3 id="services-contact-title">O próximo passo<br />é uma conversa.</h3>
+        <p>Ao ligar, indique a frente ou o serviço que procura. Fale diretamente com a Madri pelo número ao lado.</p>
+      </div>
+      <div class="services-contact-action">
+        <span class="services-contact-icon" aria-hidden="true"><Icon name="phone" /></span>
+        <span class="services-contact-label">Telefone da Madri</span>
+        <a href={`tel:${siteConfig.contact.phone}`} aria-label={`Ligar para a Madri: ${siteConfig.contact.phoneDisplay}`}>
+          {siteConfig.contact.phoneDisplay}
+          <Icon name="phone" aria-hidden="true" />
+        </a>
+        <span class="services-contact-note">Sem atendimento presencial.</span>
+      </div>
+    </aside>
+  </div>
+</section>

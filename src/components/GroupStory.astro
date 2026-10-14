@@ -1,0 +1,18 @@
+---
+import { media } from "../config/media";
+import { Icon } from "astro-icon/components";
+---
+
+<section class="group" id="grupo" aria-labelledby="group-title">
+  <div class="group-layout">
+    <div class="group-photo" data-reveal>
+      <img src={media.aerial.src} width={media.aerial.width} height={media.aerial.height} alt={media.aerial.alt} loading="lazy" />
+    </div>
+    <div class="group-panel" data-reveal>
+      <p class="eyebrow">Conexão institucional</p>
+      <h2 class="section-title" id="group-title">Uma atuação conectada ao grupo.</h2>
+      <p class="section-copy">A Madri Paisagismo e Serviços integra o mesmo grupo da Corredo e Garcia.</p>
+      <a href="https://www.corredoegarcia.com.br/" target="_blank" rel="noopener noreferrer">Conhecer a Corredo e Garcia <Icon name="external-link" aria-hidden="true" /></a>
+    </div>
+  </div>
+</section>

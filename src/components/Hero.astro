@@ -1,0 +1,22 @@
+---
+import { media } from "../config/media";
+import { siteConfig } from "../config/site";
+import { Icon } from "astro-icon/components";
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-title">
+  <img class="hero-image" src={media.hero.src} width={media.hero.width} height={media.hero.height} alt="" fetchpriority="high" />
+  <div class="hero-shade" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Paisagismo · Meio ambiente · Segurança do trabalho</p>
+    <h1 id="hero-title">O cuidado vai além da paisagem.</h1>
+    <p class="hero-copy">Conheça os serviços da Madri em paisagismo, soluções ambientais e segurança do trabalho.</p>
+    <div class="hero-actions">
+      <a class="button button-dark" href="#servicos"><Icon name="leaf" aria-hidden="true" /> Explorar serviços</a>
+      <a class="button button-outline" href={`tel:${siteConfig.contact.phone}`}><Icon name="phone" aria-hidden="true" /> Falar com a Madri</a>
+    </div>
+  </div>
+  <div class="hero-bottom" aria-hidden="true">
+    <span>Paisagismo</span><span>Meio ambiente</span><span>Segurança do trabalho</span>
+  </div>
+</section>

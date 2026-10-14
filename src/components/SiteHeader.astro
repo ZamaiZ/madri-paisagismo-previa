@@ -1,0 +1,57 @@
+---
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "../config/site";
+---
+
+<div class="announcement">Madri Paisagismo e Serviços · Bragança Paulista</div>
+<header class="site-header" data-site-header>
+  <div class="header-inner site-container">
+    <nav class="desktop-nav" aria-label="Navegação principal esquerda">
+      <a href={`${import.meta.env.BASE_URL}/#servicos`}>Serviços</a>
+      <a href={`${import.meta.env.BASE_URL}/#grupo`}>O grupo</a>
+    </nav>
+    <a class="header-logo" href={`${import.meta.env.BASE_URL}/#inicio`} aria-label="Madri Paisagismo e Serviços — início">
+      <img src={`${import.meta.env.BASE_URL}/${siteConfig.logo}`} width="595" height="407" alt="Madri Paisagismo e Serviços" />
+    </a>
+    <nav class="desktop-nav desktop-nav-right" aria-label="Navegação principal direita">
+      <a href={`${import.meta.env.BASE_URL}/#contato`}>Contato</a>
+      <a class="header-contact" href={`tel:${siteConfig.contact.phone}`}><Icon name="phone" aria-hidden="true" /> Ligue para nós</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav" data-menu-toggle>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação mobile" data-mobile-nav data-open="false">
+    {siteConfig.navigation.map((item) => <a href={`${import.meta.env.BASE_URL}/${item.href}`}>{item.label}</a>)}
+    <a href={`tel:${siteConfig.contact.phone}`}>Ligar: {siteConfig.contact.phoneDisplay}</a>
+  </nav>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>("[data-site-header]");
+  const toggle = header?.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = header?.querySelector<HTMLElement>("[data-mobile-nav]");
+
+  function updateScrollState() {
+    if (header) header.dataset.scrolled = String(window.scrollY > 56);
+  }
+
+  updateScrollState();
+  window.addEventListener("scroll", updateScrollState, { passive: true });
+
+  function setMenu(open: boolean) {
+    if (!toggle || !menu) return;
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    menu.dataset.open = String(open);
+  }
+
+  toggle?.addEventListener("click", () => setMenu(toggle.getAttribute("aria-expanded") !== "true"));
+  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle?.getAttribute("aria-expanded") === "true") {
+      setMenu(false);
+      toggle.focus();
+    }
+  });
+</script>

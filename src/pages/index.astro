@@ -1,0 +1,20 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import Hero from "../components/Hero.astro";
+import ServiceOverview from "../components/ServiceOverview.astro";
+import GroupStory from "../components/GroupStory.astro";
+import ContactSection from "../components/ContactSection.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+---
+
+<BaseLayout>
+  <SiteHeader />
+  <main id="main-content">
+    <Hero />
+    <ServiceOverview />
+    <GroupStory />
+    <ContactSection />
+  </main>
+  <SiteFooter />
+</BaseLayout>

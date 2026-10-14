@@ -1,0 +1,17 @@
+---
+import { siteConfig } from "../config/site";
+import { Icon } from "astro-icon/components";
+---
+
+<section class="contact" id="contato" aria-labelledby="contact-title">
+  <div class="site-container" data-reveal>
+    <p class="eyebrow">Entre em contato</p>
+    <h2 class="section-title" id="contact-title">Vamos conversar sobre o que você precisa?</h2>
+    <p class="section-copy">Fale com a Madri para saber mais sobre os serviços em paisagismo, meio ambiente e segurança do trabalho.</p>
+    <a class="button button-dark" href={`tel:${siteConfig.contact.phone}`}><Icon name="phone" aria-hidden="true" /> Ligar para {siteConfig.contact.phoneDisplay}</a>
+    <div class="contact-details">
+      <p>Endereço da empresa: R. das Lichias, 264, Barreiro, Bragança Paulista — SP, 12918-190</p>
+      <p>Sem atendimento presencial.</p>
+    </div>
+  </div>
+</section>
